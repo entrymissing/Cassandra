@@ -12,13 +12,11 @@
   },
   {
     "monitor": {
-      "name": "GCalendarQueryMonitor",
-      "ts_prefix": "test.calendar",
+      "name": "GCalendarTimeSpentAtLocationMonitor",
+      "ts_prefix": "test.location",
       "frequency": 20
     },
     "config": {
-      "query": "Social",
-      "suffix": "social"
     }
   }
 ]

@@ -10,7 +10,8 @@ from monitors import netstat_monitor
 from monitors import ping_monitor
 from monitors import test_monitor
 
-AVAILABLE_MONITORS = {'GCalendarQueryMonitor': gcalendar_monitor.GCalendarQueryMonitor,
+AVAILABLE_MONITORS = {'GCalendarTimeSpentAtLocationMonitor': gcalendar_monitor.GCalendarTimeSpentAtLocationMonitor,
+                      'GCalendarQueryMonitor': gcalendar_monitor.GCalendarQueryMonitor,
                       'GFitMonitor': gfit_monitor.GFitMonitor,
                       'GmailLengthOfQueryMonitor': gmail_monitor.GmailLengthOfQueryMonitor,
                       'GmailOldestInInboxMonitor': gmail_monitor.GmailOldestInInboxMonitor,
