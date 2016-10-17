@@ -1,3 +1,4 @@
+import datetime
 import httplib2
 import os
 
@@ -111,3 +112,34 @@ def GetMessage(service, user_id, msg_id):
     return message
   except errors.HttpError as error:
     print('An error occurred: %s' % error)
+
+@util.memoized
+def GetCalendarByName(service, name):
+  page_token = None
+  while True:
+    calendar_list = service.calendarList().list(pageToken=page_token).execute()
+    for calendar_list_entry in calendar_list['items']:
+      if calendar_list_entry['summary'] == name:
+        return calendar_list_entry['id']
+    page_token = calendar_list.get('nextPageToken')
+    if not page_token:
+      break
+  return None
+
+def GetCalendarEntriesByQuery(service, query, num_hours = 7*24, calendar_name = 'Tracking'):
+  # Find the right calendar
+  calendar_id = GetCalendarByName(service, calendar_name)
+
+  # Compute some timestamps
+  utcnow = datetime.datetime.utcnow()
+  ndays = utcnow - datetime.timedelta(hours = num_hours)
+  # 'Z' indicates UTC time
+  utcnow = utcnow.isoformat() + 'Z'
+  ndays = ndays.isoformat() + 'Z'
+
+  eventsResult = service.events().list(
+      calendarId=calendar_id, timeMin=ndays, timeMax=utcnow, q=query, singleEvents=True,
+      orderBy='startTime').execute()
+  events = eventsResult.get('items', [])
+  
+  return events
