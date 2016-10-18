@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 import argparse
-import settingsParse
+import json
 import sys
 import time
 
@@ -19,7 +19,8 @@ def main(argv):
   args = parser.parse_args()
 
   # Read settings
-  settings = settingsParse.read_settings(args.settings)
+  with open(args.settings) as fp:
+    settings = json.loads(fp.read())
 
   # Create the monitors
   all_monitors = []
