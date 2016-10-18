@@ -3,6 +3,7 @@ from __future__ import print_function
 import argparse
 import json
 import sys
+from tendo import singleton
 import time
 
 from monitors import factory
@@ -17,6 +18,9 @@ def main(argv):
   parser.add_argument('-d', '--daemon', action='store_true',
                       help="Run as a daemon, i.e. keep running.")
   args = parser.parse_args()
+
+  # Exit out if there are multiple instances
+  me = singleton.SingleInstance()
 
   # Read settings
   with open(args.settings) as fp:
