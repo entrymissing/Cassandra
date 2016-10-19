@@ -19,7 +19,7 @@ def main(argv):
                       help="Run as a daemon, i.e. keep running.")
   args = parser.parse_args()
 
-  # Exit out if there are multiple instances
+  # Exit if there are multiple instances
   me = singleton.SingleInstance()
 
   # Read settings
