@@ -31,5 +31,25 @@
       "stream_threshold": 102400,
       "gap_time": 600,
       "max_db_age": 1209600}
+  },
+  {
+    "monitor": {
+      "name": "GCalendarQueryMonitor",
+      "ts_prefix": "test.calendar",
+      "frequency": 20
+    },
+    "config": {
+      "query": "Awesome",
+      "suffix": "awesome"
+    }
+  },
+  {
+    "monitor": {
+      "name": "GCalendarTimeSpentAtLocationMonitor",
+      "ts_prefix": "test.location",
+      "frequency": 20
+    },
+    "config": {
+    }
   }
 ]
