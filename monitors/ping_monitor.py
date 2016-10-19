@@ -20,7 +20,7 @@ class PingMonitor(base_monitor.BaseMonitor):
       self.IS_WINDOWS =  True
     else:
       self.MATCHING_RE = LINUX_RE
-      self.PING_COMMAND = 'ping %s -c ' + str(self.num_pings)
+      self.PING_COMMAND = ['ping', '-c ', str(self.num_pings)]
       self.IS_WINDOWS =  False
       
 
@@ -28,7 +28,10 @@ class PingMonitor(base_monitor.BaseMonitor):
     data_points = []
 
     for target in self.ping_targets:
-      cmd = self.PING_COMMAND % target
+      if self.IS_WINDOWS:
+        cmd = self.PING_COMMAND % target
+      else:
+        cmd = self.PING_COMMAND.append(target)
       ping_proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
       for line in iter(ping_proc.stdout.readline, b''):
         # I hate the bloody byte objects
