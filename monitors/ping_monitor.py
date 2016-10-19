@@ -32,7 +32,6 @@ class PingMonitor(base_monitor.BaseMonitor):
         cmd = self.PING_COMMAND % target
       else:
         cmd = self.PING_COMMAND + [target]
-      print(cmd)
       ping_proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
       for line in iter(ping_proc.stdout.readline, b''):
         # I hate the bloody byte objects
@@ -44,6 +43,5 @@ class PingMonitor(base_monitor.BaseMonitor):
           else:
             avg = float(m.group(2))
           data_points.append((self.ts_prefix + '.' + target.replace('.', '_') , avg, time.time()))
-          print(data_points)
           break
     return data_points
