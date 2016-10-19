@@ -7,6 +7,7 @@ from tendo import singleton
 import time
 
 from monitors import factory
+import submitter
 
 def main(argv):
   # Parse the arguments
@@ -38,7 +39,12 @@ def main(argv):
     for mon in all_monitors:
       print(mon.name())
       data.extend(mon.monitor())
-    print(data)
+    if data:
+      if args.dry_run:
+        for d in data:
+          submitter.printer_submitter(d)
+      else:
+        submitter.carbon_pickle_submitter(data)
     
     if not args.daemon:
       break

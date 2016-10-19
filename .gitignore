@@ -1,6 +1,9 @@
 # Local storage of the different monitors
 data/*.zip
 
+# Files with private data
+private_data/private_keys.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
