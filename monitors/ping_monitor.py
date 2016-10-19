@@ -13,14 +13,14 @@ class PingMonitor(base_monitor.BaseMonitor):
     self.ping_targets = self.config.get('ping_targets', [])
 
     WINDOWS_RE = 'Minimum = (\d+)ms, Maximum = (\d+)ms, Average = (\d+)ms'
-    LINUX_RE = '([^ ]*)\s* : xmt/rcv/%loss = \d+/\d+/(\d+)%, min/avg/max = (.*)/(.*)/(.*)'
+    LINUX_RE = 'rtt min/avg/max/mdev = (.*)/(.*)/(.*)/(.*) ms'
     if platform.system().lower() == 'windows':
       self.MATCHING_RE = WINDOWS_RE
       self.PING_COMMAND = 'ping %s -n ' + str(self.num_pings)
       self.IS_WINDOWS =  True
     else:
       self.MATCHING_RE = LINUX_RE
-      self.PING_COMMAND = ['ping', '-c ', str(self.num_pings)]
+      self.PING_COMMAND = ['ping', '-c', str(self.num_pings)]
       self.IS_WINDOWS =  False
       
 
@@ -31,7 +31,8 @@ class PingMonitor(base_monitor.BaseMonitor):
       if self.IS_WINDOWS:
         cmd = self.PING_COMMAND % target
       else:
-        cmd = self.PING_COMMAND.append(target)
+        cmd = self.PING_COMMAND + [target]
+      print(cmd)
       ping_proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
       for line in iter(ping_proc.stdout.readline, b''):
         # I hate the bloody byte objects
@@ -41,7 +42,8 @@ class PingMonitor(base_monitor.BaseMonitor):
           if self.IS_WINDOWS:
             avg = float(m.group(3))
           else:
-            avg = float(m.group(4))
+            avg = float(m.group(2))
           data_points.append((self.ts_prefix + '.' + target.replace('.', '_') , avg, time.time()))
+          print(data_points)
           break
     return data_points
