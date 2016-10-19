@@ -42,6 +42,6 @@ class PingMonitor(base_monitor.BaseMonitor):
             avg = float(m.group(3))
           else:
             avg = float(m.group(2))
-          data_points.append((self.ts_prefix + '.' + target.replace('.', '_') , avg, time.time()))
+          data_points.append((self.ts_prefix + '.' + target.replace('.', '_') + '_avg' , avg, time.time()))
           break
     return data_points
