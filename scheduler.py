@@ -22,6 +22,10 @@ def main(argv):
 
   # Exit if there are multiple instances
   me = singleton.SingleInstance()
+  
+  # This is used to stop the daemon if e.g. a new verison has been loaded
+  with open('version') as fp:
+    version = fp.read()
 
   # Read settings
   with open(args.settings) as fp:
@@ -48,7 +52,12 @@ def main(argv):
     
     if not args.daemon:
       break
-    time.sleep(1)
+
+    with open('version') as fp:
+      if not version == fp.read():
+        break
+
+    time.sleep(30)
 
 
 if __name__ == '__main__':
