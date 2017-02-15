@@ -1,0 +1,68 @@
+[
+  {
+    "monitor": {
+      "name": "GFitMonitor",
+      "ts_prefix": "data.activity.workout",
+      "frequency": 1
+    },
+    "config": {
+    }
+  },
+  {
+    "monitor": {
+      "name": "GmailOldestInInboxMonitor",
+      "ts_prefix": "data.mail.private",
+      "frequency": 1
+    },
+    "config": {
+    }
+  },
+  {
+    "monitor": {
+      "name": "GmailLengthOfQueryMonitor",
+      "ts_prefix": "data.mail.private",
+      "frequency": 1
+    },
+    "config": {
+      "queries": ["in:inbox",
+                  "in:sent newer_than:7d",
+                  "in:sent newer_than:24h",
+                  "in:sent newer_than:1h"],
+      "suffixes": ["inbox_size",
+                   "sent_last_7d",
+                   "sent_last_24h",
+                   "sent_last_1h"]
+    }
+  },
+  {
+    "monitor": {
+      "name": "GCalendarQueryMonitor",
+      "ts_prefix": "data.calendar",
+      "frequency": 1
+    },
+    "config": {
+      "query": "Awesome",
+      "suffix": "awesome"
+    }
+  },
+  {
+    "monitor": {
+      "name": "GCalendarQueryMonitor",
+      "ts_prefix": "data.calendar",
+      "frequency": 1
+    },
+    "config": {
+      "query": "Social",
+      "suffix": "social"
+    }
+  },
+  {
+    "monitor": {
+      "name": "GCalendarTimeSpentAtLocationMonitor",
+      "ts_prefix": "data.location",
+      "frequency": 1
+    },
+    "config": {
+    }
+  }
+]

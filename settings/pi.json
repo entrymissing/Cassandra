@@ -3,7 +3,7 @@
     "monitor": {
       "name": "PingMonitor",
       "ts_prefix": "data.ping",
-      "frequency": 840
+      "frequency": 600
     },
     "config": {
       "ping_targets": ["192.168.0.1", "google.com", "spiegel.de",

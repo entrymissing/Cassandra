@@ -1,0 +1,11 @@
+[
+  {
+    "monitor": {
+      "name": "WindowsNetstatMonitor",
+      "ts_prefix": "data.net.desktop.",
+      "frequency": 300
+    },
+    "config": {
+    }
+  }
+]
