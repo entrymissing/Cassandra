@@ -1,68 +1,12 @@
 [
   {
-    "monitor": {
-      "name": "GFitMonitor",
-      "ts_prefix": "data.activity.workout",
-      "frequency": 290
-    },
-    "config": {
-    }
-  },
-  {
-    "monitor": {
-      "name": "GmailOldestInInboxMonitor",
-      "ts_prefix": "data.mail.private",
-      "frequency": 290
-    },
-    "config": {
-    }
-  },
-  {
-    "monitor": {
-      "name": "GmailLengthOfQueryMonitor",
-      "ts_prefix": "data.mail.private",
-      "frequency": 290
-    },
-    "config": {
-      "queries": ["in:inbox",
-                  "in:sent newer_than:7d",
-                  "in:sent newer_than:24h",
-                  "in:sent newer_than:1h"],
-      "suffixes": ["inbox_size",
-                   "sent_last_7d",
-                   "sent_last_24h",
-                   "sent_last_1h"]
-    }
-  },
-  {
-    "monitor": {
-      "name": "GCalendarQueryMonitor",
-      "ts_prefix": "data.calendar",
-      "frequency": 290
-    },
-    "config": {
-      "query": "Awesome",
-      "suffix": "awesome"
-    }
-  },
-  {
-    "monitor": {
-      "name": "GCalendarQueryMonitor",
-      "ts_prefix": "data.calendar",
-      "frequency": 290
-    },
-    "config": {
-      "query": "Social",
-      "suffix": "social"
-    }
-  },
-  {
-    "monitor": {
-      "name": "GCalendarTimeSpentAtLocationMonitor",
-      "ts_prefix": "data.calendar",
-      "frequency": 290
-    },
-    "config": {
+    "class": "PingProber",
+    "prefix": "test.ping.gce",
+    "frequency": 300,
+    "parameters": {
+      "ping_targets": ["192.168.0.1", "google.com", "spiegel.de",
+                       "scripts.mit.edu", "mail.caltech.edu"],
+      "num_pings": 3
     }
   }
 ]

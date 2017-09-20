@@ -3,14 +3,15 @@ import re
 import subprocess
 import time
 
-from monitors import base_monitor
+from cassandra.probes import base_prober
 
+__PROBE_NAME = 'PingProber'
 
-class PingMonitor(base_monitor.BaseMonitor):
+class PingProber(base_prober.BaseProber):
   def setup(self):
     self.MAX_LINES = 1000
-    self.num_pings = self.config.get('num_pings', 5)
-    self.ping_targets = self.config.get('ping_targets', [])
+    self.num_pings = self.parameters.get('num_pings', 5)
+    self.ping_targets = self.parameters.get('ping_targets', [])
 
     WINDOWS_RE = 'Minimum = (\d+)ms, Maximum = (\d+)ms, Average = (\d+)ms'
     LINUX_RE = 'rtt min/avg/max/mdev = (.*)/(.*)/(.*)/(.*) ms'
@@ -25,7 +26,7 @@ class PingMonitor(base_monitor.BaseMonitor):
       
 
   def collect_data(self):
-    data_points = []
+    data_points = {}
 
     for target in self.ping_targets:
       if self.IS_WINDOWS:
@@ -42,6 +43,6 @@ class PingMonitor(base_monitor.BaseMonitor):
             avg = float(m.group(3))
           else:
             avg = float(m.group(2))
-          data_points.append((self.ts_prefix + '.' + target.replace('.', '_') + '_avg' , avg, time.time()))
+          data_points[self.prefix + '.' + target.replace('.', '_') + '_avg'] = [(time.time(), avg)]
           break
     return data_points
