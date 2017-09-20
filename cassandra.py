@@ -10,6 +10,8 @@ from cassandra import prober_factory
 from cassandra import scheduler
 from cassandra import data_writer
 
+from private_data import private_keys
+
 
 def main(argv):
   logging.basicConfig(filename='example.log',level=logging.DEBUG)
@@ -41,7 +43,8 @@ def main(argv):
   if args.dry_run:
     writer = data_writer.BaseWriter()
   else:
-    writer = data_writer.CarbonPickleWriter('entrymissing.net', 2004)
+    writer = data_writer.CarbonPickleWriter(private_keys.CARBON_SERVER,
+                                            private_keys.CARBON_PICKLE_PORT)
     
   s = scheduler.Scheduler(all_probers,
                           writer,

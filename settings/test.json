@@ -5,13 +5,8 @@
     "frequency": 5
   },
   {
-    "class": "PingProber",
+    "class": "RandomProber",
     "prefix": "test.var2",
-    "frequency": 300,
-    "parameters": {
-      "ping_targets": ["192.168.0.1", "google.com", "spiegel.de",
-                       "scripts.mit.edu", "mail.caltech.edu"],
-      "num_pings": 3
-    }
+    "frequency": 7
   }
 ]
