@@ -1,0 +1,12 @@
+[
+  {
+    "class": "PingProber",
+    "prefix": "test.ping.offsite",
+    "frequency": 300,
+    "parameters": {
+      "ping_targets": ["192.168.178.1", "google.com", "reddit.com",
+                       "scripts.mit.edu", "mail.caltech.edu"],
+      "num_pings": 3
+    }
+  }
+]
