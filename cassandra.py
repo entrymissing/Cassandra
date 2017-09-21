@@ -17,7 +17,7 @@ def main(argv):
   logging.basicConfig(filename='example.log',level=logging.DEBUG)
   
   # Exit if there are multiple instances
-  singleton.SingleInstance()
+  me = singleton.SingleInstance()
 
   # Parse the arguments
   parser = argparse.ArgumentParser()
