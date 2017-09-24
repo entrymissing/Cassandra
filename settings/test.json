@@ -1,17 +1,7 @@
 [
   {
-    "class": "RandomProber",
+    "class": "ExternalIpProber",
     "prefix": "test.var2",
     "frequency": 13
-  },
-  {
-    "class": "PingProber",
-    "prefix": "test.ping.outpost",
-    "frequency": 10,
-    "parameters": {
-      "ping_targets": ["192.168.0.1", "google.com", "reddit.com",
-                       "scripts.mit.edu", "mail.caltech.edu"],
-      "num_pings": 1
-    }
-  }  
+  }
 ]
