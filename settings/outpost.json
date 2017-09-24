@@ -8,10 +8,5 @@
                        "scripts.mit.edu", "mail.caltech.edu"],
       "num_pings": 3
     }
-  },
-  {
-    "class": "ExternalIpProber",
-    "prefix": "test.stats.outpost",
-    "frequency": 3600
-  }    
+  }   
 ]
