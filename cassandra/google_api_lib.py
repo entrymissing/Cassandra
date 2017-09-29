@@ -2,6 +2,8 @@
 # $ pip3 install --upgrade google-api-python-client
 # Requires dateutil
 # $ pip3 install --upgrade python-dateutil
+# Requires httplib2
+# $ pip3 install httplib2
 
 import datetime
 import httplib2
