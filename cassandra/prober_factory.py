@@ -15,9 +15,12 @@ class ProberFactory(object):
       name = 'cassandra.probes.' + name
       module = __import__(name, fromlist = ['__PROBE_NAME'])
       if '__PROBE_NAME' in dir(module):
-        probe_name = getattr(module, '__PROBE_NAME')
-        probe_class = getattr(module, probe_name)
-        self._all_probe_classes[probe_name] = probe_class
+        probe_names = getattr(module, '__PROBE_NAME')
+        if not isinstance(probe_names, (list, tuple)):
+          probe_names = [probe_names]
+        for probe in probe_names:
+          probe_class = getattr(module, probe)
+          self._all_probe_classes[probe] = probe_class
 
   def get_probe(self, config):
     probe_class = config['class']

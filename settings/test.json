@@ -3,5 +3,25 @@
     "class": "ExternalIpProber",
     "prefix": "test.var2",
     "frequency": 13
+  },
+  {
+    "class": "GmailOldestInInboxProber",
+    "prefix": "test.mail.private",
+    "frequency": 9
+  },
+  {
+    "class": "GmailLengthOfQueryProber",
+    "prefix": "test.mail.private",
+    "frequency": 27,
+    "parameters": {
+      "queries": ["in:inbox",
+                  "in:sent newer_than:7d",
+                  "in:sent newer_than:24h",
+                  "in:sent newer_than:1h"],
+      "suffixes": ["inbox_size",
+                   "sent_last_7d",
+                   "sent_last_24h",
+                   "sent_last_1h"]
+    }
   }
 ]

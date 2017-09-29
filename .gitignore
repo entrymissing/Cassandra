@@ -5,8 +5,9 @@ testing/
 # My windows cron starter
 cron.bat
 
-# Files with private data
-private_data/private_keys.py
+# Files with private data but still add __init__.py so the folder get's created
+private_data/*
+!private_data/__init__.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
