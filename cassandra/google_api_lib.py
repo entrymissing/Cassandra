@@ -45,7 +45,7 @@ def get_credentials():
                                    CREDENTAL_FILE)
     store = oauth2client.file.Storage(credential_path)
     credentials = store.get()
-    
+
     # If we don't have valid credentials start the oauth flow
     if not credentials or credentials.invalid:
       flow = client.flow_from_clientsecrets(CLIENT_SECRET_FILE, SCOPES)
@@ -141,5 +141,5 @@ def GetCalendarEntriesByQuery(service, query, num_hours = 7*24, calendar_name = 
       calendarId=calendar_id, timeMin=ndays, timeMax=utcnow, q=query, singleEvents=True,
       orderBy='startTime').execute()
   events = eventsResult.get('items', [])
-  
+
   return events
