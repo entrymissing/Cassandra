@@ -33,5 +33,16 @@
                    "sent_last_24h",
                    "sent_last_1h"]
     }
+  },
+  {
+    "class": "GFitProber",
+    "prefix": "test.workout",
+    "frequency": 300,
+    "parameters": {
+      "time_windows": [168,
+                       720],
+      "suffixes": ["7d",
+                   "30d"]
+    }
   }  
 ]
