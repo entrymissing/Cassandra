@@ -20,6 +20,7 @@ import dateutil.parser
 SCOPES = ('https://www.googleapis.com/auth/calendar.readonly',
           'https://www.googleapis.com/auth/gmail.readonly',
           'https://www.googleapis.com/auth/fitness.activity.read')
+CREDENTAL_FILE = 'google-api.json'
 CLIENT_SECRET_FILE = 'private_data/client_secret.json'
 APPLICATION_NAME = 'MonitorMe'
 
