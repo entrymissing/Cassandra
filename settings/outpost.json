@@ -1,7 +1,7 @@
 [
   {
     "class": "PingProber",
-    "prefix": "test.ping.outpost",
+    "prefix": "ping.outpost",
     "frequency": 300,
     "parameters": {
       "ping_targets": ["192.168.0.1", "google.com", "reddit.com",
@@ -11,17 +11,17 @@
   },
   {
     "class": "ExternalIpProber",
-    "prefix": "test.stats.outpost",
+    "prefix": "stats.outpost",
     "frequency": 3600
   },
   {
     "class": "GmailOldestInInboxProber",
-    "prefix": "test.mail.private",
+    "prefix": "mail.private",
     "frequency": 300
   },
   {
     "class": "GmailLengthOfQueryProber",
-    "prefix": "test.mail.private",
+    "prefix": "mail.private",
     "frequency": 300,
     "parameters": {
       "queries": ["in:inbox",
@@ -36,7 +36,7 @@
   },
   {
     "class": "GFitProber",
-    "prefix": "test.workout",
+    "prefix": "workout",
     "frequency": 300,
     "parameters": {
       "time_windows": [168,

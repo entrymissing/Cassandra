@@ -1,7 +1,7 @@
 [
   {
     "class": "PingProber",
-    "prefix": "test.ping.offsite",
+    "prefix": "ping.offsite",
     "frequency": 300,
     "parameters": {
       "ping_targets": ["192.168.178.1", "google.com", "reddit.com",
@@ -11,7 +11,7 @@
   },
   {
     "class": "ExternalIpProber",
-    "prefix": "test.stats.offsite",
+    "prefix": "stats.offsite",
     "frequency": 3600
   }  
 ]
