@@ -1,0 +1,4 @@
+tendo
+google-api-python-client
+python-dateutil
+oauth2client
