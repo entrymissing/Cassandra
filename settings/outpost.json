@@ -2,7 +2,7 @@
   {
     "class": "PingProber",
     "prefix": "ping.outpost",
-    "frequency": 300,
+    "frequency": 120,
     "parameters": {
       "ping_targets": ["192.168.0.1", "google.com", "reddit.com",
                        "scripts.mit.edu", "mail.caltech.edu"],
@@ -17,12 +17,12 @@
   {
     "class": "GmailOldestInInboxProber",
     "prefix": "mail.private",
-    "frequency": 300
+    "frequency": 120
   },
   {
     "class": "GmailLengthOfQueryProber",
     "prefix": "mail.private",
-    "frequency": 300,
+    "frequency": 120,
     "parameters": {
       "queries": ["in:inbox",
                   "in:sent newer_than:7d",
@@ -37,12 +37,12 @@
   {
     "class": "GFitProber",
     "prefix": "workout",
-    "frequency": 300,
+    "frequency": 120,
     "parameters": {
       "time_windows": [168,
                        720],
       "suffixes": ["7d",
                    "30d"]
     }
-  }  
+  }
 ]
