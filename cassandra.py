@@ -1,8 +1,6 @@
 import argparse
 import json
-import logging
 import math
-from tendo import singleton
 import time
 import sys
 
@@ -14,11 +12,6 @@ from private_data import private_keys
 
 
 def main(argv):
-  logging.basicConfig(filename='example.log',level=logging.DEBUG)
-  
-  # Exit if there are multiple instances
-  me = singleton.SingleInstance()
-
   # Parse the arguments
   parser = argparse.ArgumentParser()
   parser.add_argument('-c', '--configs', type=str,
@@ -27,8 +20,6 @@ def main(argv):
                       help="If set the collection will print the data that "
                            "would have been sent to STDOUT and do nothing "
                            "else.")
-  parser.add_argument('-d', '--daemon', action='store_true',
-                      help="Run as a daemon, i.e. keep running.")
   args = parser.parse_args()
   
   # Read settings
@@ -43,13 +34,13 @@ def main(argv):
   if args.dry_run:
     writer = data_writer.BaseWriter()
   else:
+    # TODO: Make the server and port a command line argument
     writer = data_writer.CarbonPickleWriter(private_keys.CARBON_SERVER,
                                             private_keys.CARBON_PICKLE_PORT)
-    
-  s = scheduler.Scheduler(all_probers,
-                          writer,
-                          version_file='version')
-  s.run()
+  
+  for probe in all_probers:
+    data = probe.execute()
+    writer.write_data(data)    
     
   
 if __name__ == '__main__':

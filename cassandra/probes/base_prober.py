@@ -33,16 +33,6 @@ class BaseProber(object):
 
   def execute(self):
     """Function to call to get data."""
-
-    # Sleep until the next scheduled run
-    wait_time = self.next_run - time.time()
-    if wait_time > 0:
-      time.sleep(wait_time)
-    
-    # Next scheduled run is last_run + frequency. So, if we missed the deadline
-    # we still want to keep the pace
-    self.next_run += self.frequency
-      
     data = self.collect_data()
 
     logging.debug('Probe {} with prefix {} created data {} at {}'.format(self.class_name, self.prefix, str(data), str(int(time.time()))))
