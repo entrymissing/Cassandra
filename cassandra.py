@@ -13,7 +13,7 @@ from private_data import private_keys
 
 
 def main(argv):
-  logging.basicConfig(filename='example.log',level=logging.DEBUG)
+  logging.basicConfig(filename='example.log',level=logging.CRITICAL)
   # Parse the arguments
   parser = argparse.ArgumentParser()
   parser.add_argument('-c', '--configs', type=str,
