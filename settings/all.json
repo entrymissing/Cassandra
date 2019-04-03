@@ -10,6 +10,11 @@
     }
   },
   {
+    "class": "ExternalIpProber",
+    "prefix": "stats.outpost",
+    "frequency": 3600
+  },
+  {
     "class": "GmailOldestInInboxProber",
     "prefix": "mail.private",
     "frequency": 120
