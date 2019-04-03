@@ -3,6 +3,7 @@ import json
 import math
 import time
 import sys
+import logging
 
 from cassandra import prober_factory
 from cassandra import scheduler
@@ -12,6 +13,7 @@ from private_data import private_keys
 
 
 def main(argv):
+  logging.basicConfig(filename='example.log',level=logging.DEBUG)
   # Parse the arguments
   parser = argparse.ArgumentParser()
   parser.add_argument('-c', '--configs', type=str,
