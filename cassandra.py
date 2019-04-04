@@ -22,8 +22,8 @@ def main(argv):
                            "else.")
   parser.add_argument('-s', '--carbon_server', type=str, default='localhost',
                     help="DNS of the server that carbon is running on. Default is localhost.")
-  parser.add_argument('-p', '--carbon_port', type=int, default=2003,
-                    help="Pickle port of the carbon server. Default is 2003.")
+  parser.add_argument('-p', '--carbon_port', type=int, default=2004,
+                    help="Pickle port of the carbon server. Default is 2004.")
   args = parser.parse_args()
   
   # Read settings
