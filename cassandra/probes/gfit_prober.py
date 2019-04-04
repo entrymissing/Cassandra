@@ -3,6 +3,7 @@ import time
 
 from cassandra.probes import base_prober
 from cassandra import google_api_lib as google_api
+from cassandra import google_api_credentials_lib as google_creds
 
 __PROBE_NAME = ['GFitProber']
 
@@ -18,7 +19,7 @@ class GFitProber(base_prober.BaseProber):
           (self.TIME_WINDOWS, self.SUFFIXES))
 
   def collect_data(self):
-    service = google_api.connect_to_api('fitness', 'v1')
+    service = google_creds.connect_to_api('fitness', 'v1')
     data = {}
     now = time.time()
     utcnow = datetime.datetime.utcnow()

@@ -2,6 +2,7 @@ import time
 
 from cassandra.probes import base_prober
 from cassandra import google_api_lib as google_api
+from cassandra import google_api_credentials_lib as google_creds
 
 __PROBE_NAME = ['GmailLengthOfQueryProber',
                 'GmailOldestInInboxProber']
@@ -18,7 +19,7 @@ class GmailLengthOfQueryProber(base_prober.BaseProber):
           (self.QUERIES, self.SUFFIXES))
 
   def collect_data(self):
-    service = google_api.connect_to_api('gmail', 'v1')
+    service = google_creds.connect_to_api('gmail', 'v1')
     
     data = {}
     now = time.time()
@@ -32,7 +33,7 @@ class GmailLengthOfQueryProber(base_prober.BaseProber):
 
 class GmailOldestInInboxProber(base_prober.BaseProber):
   def collect_data(self):
-    service = google_api.connect_to_api('gmail', 'v1')
+    service = google_creds.connect_to_api('gmail', 'v1')
     
     now = time.time()
     
