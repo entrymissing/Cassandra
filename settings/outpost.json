@@ -29,5 +29,16 @@
       "suffixes": ["7d",
                    "30d"]
     }
-  }
+  },
+  {
+    "class": "GCalendarProber",
+    "prefix": "calendar",
+    "frequency": 14,
+    "parameters": {
+      "time_windows": [168,
+                       720],
+      "suffixes": ["7d",
+                   "30d"]
+    }
+  }  
 ]
