@@ -35,7 +35,7 @@ class GCalendarProber(base_prober.BaseProber):
                 start_time = parse(event['start'].get('dateTime'))
                 end_time = parse(event['end'].get('dateTime'))
                 seconds_since.append(
-                    (datetime.datetime.now(datetime.timezone.utc) - start_time).seconds)
+                    (datetime.datetime.now(datetime.timezone.utc) - start_time).total_seconds())
                 event_length = end_time - start_time
                 if event_length.seconds <= 30*60:
                     short_count += 1
