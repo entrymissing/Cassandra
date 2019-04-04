@@ -1,7 +1,5 @@
 import os
 import glob
-import inspect
-from cassandra.probes import base_prober
 
    
 class ProberFactory(object):

@@ -9,11 +9,9 @@ from cassandra import prober_factory
 from cassandra import scheduler
 from cassandra import data_writer
 
-from private_data import private_keys
-
-
 def main(argv):
-  logging.basicConfig(filename='example.log',level=logging.CRITICAL)
+  logging.basicConfig(filename='cassandra.log',level=logging.ERROR)
+
   # Parse the arguments
   parser = argparse.ArgumentParser()
   parser.add_argument('-c', '--configs', type=str,
@@ -22,6 +20,10 @@ def main(argv):
                       help="If set the collection will print the data that "
                            "would have been sent to STDOUT and do nothing "
                            "else.")
+  parser.add_argument('-s', '--carbon_server', type=str, default='localhost',
+                    help="DNS of the server that carbon is running on. Default is localhost.")
+  parser.add_argument('-p', '--carbon_port', type=int, default=2003,
+                    help="Pickle port of the carbon server. Default is 2003.")
   args = parser.parse_args()
   
   # Read settings
@@ -36,13 +38,12 @@ def main(argv):
   if args.dry_run:
     writer = data_writer.BaseWriter()
   else:
-    # TODO: Make the server and port a command line argument
-    writer = data_writer.CarbonPickleWriter(private_keys.CARBON_SERVER,
-                                            private_keys.CARBON_PICKLE_PORT)
+    writer = data_writer.CarbonPickleWriter(args.carbon_server, args.carbon_port)
   
+  data = {}
   for probe in all_probers:
-    data = probe.execute()
-    writer.write_data(data)    
+    data.update(probe.execute())
+  writer.write_data(data)    
     
   
 if __name__ == '__main__':
