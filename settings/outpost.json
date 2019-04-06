@@ -5,6 +5,11 @@
     "frequency": 120
   },
   {
+    "class": "SteamProber",
+    "prefix": "steam",
+    "frequency": 120
+  },
+  {
     "class": "GmailLengthOfQueryProber",
     "prefix": "mail.private",
     "frequency": 120,
